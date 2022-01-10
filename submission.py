@@ -12,7 +12,8 @@ def fig2a():
     table.description               = "The MJY distribution for the number of observed events (black markers) compared with the estimated backgrounds (filled histograms) in the signal region 1. The distributions expected from the signal under three MX and MY hypotheses and assuming a cross section of 1 fb are also shown."
     table.location                  = "Data from Figure 2 (left)"
     table.keywords["observables"]   = ["MJY"]
-    table.add_image("inputs/Figures/TT_MJY.pdf")
+    table.add_image("input/TT_MJY.pdf")
+    table.keywords["cmenergies"] = [13000]
 
     reader                  = RootFileReader("test_TT.root")
 
@@ -68,8 +69,8 @@ def fig2b():
     table.description               = "The MJJ distribution for the number of observed events (black markers) compared with the estimated backgrounds (filled histograms) in the signal region 1. The distributions expected from the signal under three MX and MY hypotheses and assuming a cross section of 1 fb are also shown."
     table.location                  = "Data from Figure 2 (right)"
     table.keywords["observables"]   = ["MJJ"]
-    table.add_image("inputs/Figures/TT_MJJ.pdf")
-
+    table.add_image("input/TT_MJJ.pdf")
+    table.keywords["cmenergies"] = [13000]
     reader                  = RootFileReader("test_TT.root")
 
     TotalBackground         = reader.read_hist_1d("totalbkg_projy")
@@ -120,11 +121,12 @@ def fig2b():
 
 def fig3():
     table                           = Table("Figure 3")
-    table.description               = "The 95% confidence level expected and observed upper limits on signal cross-section for different values of MX and MY. Logarithmic interpolation is used between the tabulated values to plot the limits on a finer grid."
+    table.description               = "The 95\% confidence level expected and observed upper limits on signal cross-section for different values of MX and MY. Logarithmic interpolation is used between the tabulated values to plot the limits on a finer grid."
     table.location                  = "Data from Figure 3"
     table.keywords["observables"]   = ["MX","MY"]
-    table.add_image("inputs/Figures/2d_obs_limits.pdf")
-    table.add_image("inputs/Figures/2d_exp_limits.pdf")
+    table.add_image("input/2d_obs_limits.pdf")
+    table.add_image("input/2d_exp_limits.pdf")
+    table.keywords["cmenergies"] = [13000]
 
     with open('forHepData.pkl', 'rb') as handle:
         myData = pickle.load(handle)
@@ -164,6 +166,7 @@ def fig3():
 
 
 submission = Submission()
+submission.read_abstract("input/abstract.txt")
 
 table2a = fig2a()
 table2b = fig2b()
